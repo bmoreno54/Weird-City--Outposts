@@ -25,19 +25,26 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>randomize();
+            <string>//initialize world
+randomize();
 _seed = random_get_seed();
-_world_age = irandom(MAX_WORLD_AGE);
-_harshness = get_integer("Choose difficulty: 1 (easy), 2 (medium), 3 (hard)", 1);
 _grid_chunks = ds_grid_create(WORLD_WIDTH, WORLD_HEIGHT);
-_equator = WORLD_HEIGHT*CHUNK_HEIGHT/2;
 
-var first_chunk = instance_create(irandom(WORLD_WIDTH)*CHUNK_WIDTH*TILE_WIDTH,
-                                  irandom (WORLD_HEIGHT)*CHUNK_HEIGHT*TILE_HEIGHT, obj_chunk);
-ds_grid_set(_grid_chunks, first_chunk.x, first_chunk.y, first_chunk);
-instance_create(first_chunk._grid_tiles.x + irandom(CHUNK_WIDTH)*TILE_WIDTH,
-                first_chunk._grid_tiles.y + irandom(CHUNK_HEIGHT)*TILE_HEIGHT,
-                obj_player);
+//place player
+instance_create(irandom(WORLD_WIDTH*CHUNK_WIDTH)*TILE_WIDTH,
+                irandom(WORLD_HEIGHT*CHUNK_HEIGHT)*TILE_HEIGHT, obj_player);
+
+//fit room to world                
+rm_overworld.room_width = WORLD_WIDTH*CHUNK_WIDTH*TILE_WIDTH;
+rm_overworld.room_height = WORLD_HEIGHT*CHUNK_HEIGHT*TILE_HEIGHT;
+
+//add first chunk at player location
+ds_grid_set(_grid_chunks, obj_player._longitude, obj_player._latitude,
+            instance_create(obj_player._longitude*CHUNK_WIDTH*TILE_WIDTH,
+                            obj_player._latitude*CHUNK_HEIGHT*TILE_HEIGHT,
+                            obj_chunk)
+            );
+
 </string>
           </argument>
         </arguments>
