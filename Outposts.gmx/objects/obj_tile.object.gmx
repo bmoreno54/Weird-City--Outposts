@@ -26,8 +26,6 @@
           <argument>
             <kind>1</kind>
             <string>randomize();
-_draw_x = x * TILE_WIDTH;
-_draw_y = y * TILE_HEIGHT;
 _seed = random_get_seed();
 _elevation = scr_set_elevation(self);
 _moisture = scr_set_moisture(self);
@@ -57,7 +55,7 @@ _longitude = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_rectangle(_draw_x, _draw_y, _draw_x + TILE_WIDTH, _draw_y + TILE_HEIGHT, true);
+            <string>draw_rectangle(x, y, x + TILE_WIDTH, y + TILE_HEIGHT, true);
 //draw_text(_draw_x + 2, _draw_y + 2, _elevation);
 //draw_text(_draw_x + 2, _draw_y + 2, _moisture);
 //draw_text(_draw_x + 2, _draw_y + 2, string(_chunk.x) + ", " + string(_chunk.y));

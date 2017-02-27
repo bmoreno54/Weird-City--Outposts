@@ -27,17 +27,7 @@
             <kind>1</kind>
             <string>randomize();
 _seed = random_get_seed();
-_world_age = irandom(MAX_WORLD_AGE);
-_harshness = get_integer("Choose difficulty: 1 (easy), 2 (medium), 3 (hard)", 1);
-_grid_chunks = ds_grid_create(WORLD_WIDTH, WORLD_HEIGHT);
-_equator = WORLD_HEIGHT*CHUNK_HEIGHT/2;
-
-var first_chunk = instance_create(irandom(WORLD_WIDTH)*CHUNK_WIDTH*TILE_WIDTH,
-                                  irandom (WORLD_HEIGHT)*CHUNK_HEIGHT*TILE_HEIGHT, obj_chunk);
-ds_grid_set(_grid_chunks, first_chunk.x, first_chunk.y, first_chunk);
-instance_create(first_chunk._grid_tiles.x + irandom(CHUNK_WIDTH)*TILE_WIDTH,
-                first_chunk._grid_tiles.y + irandom(CHUNK_HEIGHT)*TILE_HEIGHT,
-                obj_player);
+_grid_tiles = scr_build_chunk(self);
 </string>
           </argument>
         </arguments>
